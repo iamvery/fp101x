@@ -1,4 +1,8 @@
 import Data.Char
+import Control.Monad (unless)
+
+assert :: Bool -> String -> IO ()
+assert p str = unless p (error str)
 
 -- 1
 s = sum [x ^ 2 | x <- [1..100]]
@@ -62,3 +66,9 @@ shift n c | isLower c = int2llet (mod (llet2int c + n) 26)
 
 encode :: Int -> String -> String
 encode n xs = [shift n x | x <- xs]
+
+main = do
+  assert (s == 338350) "#1 is wrong"
+  assert ((replicate' 3 'a') == "aaa") "#2 is wrong"
+  assert ((pyths 5) == [(3,4,5),(4,3,5)]) "#3 is wrong"
+  assert ((perfect 500) == [6,28,496]) "#4 is wrong"
