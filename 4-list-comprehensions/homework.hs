@@ -67,8 +67,40 @@ shift n c | isLower c = int2llet (mod (llet2int c + n) 26)
 encode :: Int -> String -> String
 encode n xs = [shift n x | x <- xs]
 
+-- hw8
+e8 = [(x, y) | x <- [1, 2], y <- [1, 2]]
+
+-- hw9
+e9 = [x | x <- [1, 2, 3], y <- [1..x]]
+
+-- hw10
+e10 = sum [x | x <- [1..10], even x]
+
+-- hw11
+xs = 1 : [x + 1 | x <- xs] -- wat?
+
+-- hw12
+riffle :: [a] -> [a] -> [a]
+riffle xs ys = concat [[x,y] | (x,y) <- zip xs ys]
+
+-- hw13
+divides :: Int -> Int -> Bool
+divides x y = mod x y == 0
+
+divisors :: Int -> [Int]
+divisors x = [d | d <- [1..x], divides x d]
+
+
+-- check
 main = do
   assert (s == 338350) "#1 is wrong"
   assert ((replicate' 3 'a') == "aaa") "#2 is wrong"
   assert ((pyths 5) == [(3,4,5),(4,3,5)]) "#3 is wrong"
   assert ((perfect 500) == [6,28,496]) "#4 is wrong"
+  assert (e8 == [(1,1),(1,2),(2,1),(2,2)]) "#8 is wrong"
+  assert (e9 == [1,2,2,3,3,3]) "#9 is wrong"
+  assert (e10 == 30) "#10 is wrong"
+  assert ((riffle [1,2,3] [4,5,6]) == [1,4,2,5,3,6]) "#12 is wrong"
+  assert ((divides 15 2) == False) "#13 is wrong"
+  assert ((divides 15 3) == True) "#13 is wrong"
+  assert ((divisors 15) == [1, 3, 5, 15]) "#13 is wrong"
