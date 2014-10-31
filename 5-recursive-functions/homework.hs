@@ -7,11 +7,11 @@ assert p str = unless p (error str)
 -- 1
 (*) :: Int -> Int -> Int
 m * 0 = 0
-m * (n + 1) = m + (m * n)
+m * n = m + (m * (n - 1))
 
 (^) :: Int -> Int -> Int
 m ^ 0 = 1
-m ^ (n + 1) = m * (m ^ n)
+m ^ n = m * (m ^ (n - 1))
 -- 2 ^ 3
 -- 2 * (2 ^ 2)
 -- 2 * 2 * (2 ^ 1)
@@ -52,12 +52,12 @@ concat [] = []
 concat (a : as) = a ++ concat as
 
 replicate :: Int -> a -> [a]
-replicate 1 a = [a]
-replicate (n + 1) a = a : replicate n a
+replicate 0 _ = []
+replicate n a = a : replicate (n - 1) a
 
 (!!) :: [a] -> Int -> a
 (x : xs) !! 0 = x
-(x : xs) !! (n + 1) = xs !! n
+(x : xs) !! n = xs !! (n - 1)
 
 elem :: Eq a => a -> [a] -> Bool
 elem x [] = False
@@ -88,7 +88,7 @@ sum (x : xs) = x + sum xs
 
 take :: Int -> [a] -> [a]
 take 0 _ = []
-take (n + 1) (x : xs) = x : take n xs
+take n (x : xs) = x : take (n - 1) xs
 
 last :: [a] -> a
 last (x : []) = x
