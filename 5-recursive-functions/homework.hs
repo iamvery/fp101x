@@ -77,7 +77,7 @@ halve xs = (take h xs, drop h xs)
 
 msort :: Ord a => [a] -> [a]
 msort [] = []
-msort (x : []) = [x]
+msort [x] = [x]
 msort xs = merge (msort (fst h)) (msort (snd h))
   where h = halve xs
 
@@ -91,7 +91,7 @@ take 0 _ = []
 take n (x : xs) = x : take (n - 1) xs
 
 last :: [a] -> a
-last (x : []) = x
+last [x] = x
 last (_ : xs) = last xs
 
 -- check
