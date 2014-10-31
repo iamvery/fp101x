@@ -56,11 +56,11 @@ replicate 0 _ = []
 replicate n a = a : replicate (n - 1) a
 
 (!!) :: [a] -> Int -> a
-(x : xs) !! 0 = x
-(x : xs) !! n = xs !! (n - 1)
+(x : _) !! 0 = x
+(_ : xs) !! n = xs !! (n - 1)
 
 elem :: Eq a => a -> [a] -> Bool
-elem x [] = False
+elem _ [] = False
 elem x (y : ys) = x == y || elem x ys
 
 -- 4
