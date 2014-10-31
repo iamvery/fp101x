@@ -78,8 +78,8 @@ halve xs = (take h xs, drop h xs)
 msort :: Ord a => [a] -> [a]
 msort [] = []
 msort [x] = [x]
-msort xs = merge (msort (fst h)) (msort (snd h))
-  where h = halve xs
+msort xs = merge (msort ys) (msort zs)
+  where (ys, zs) = halve xs
 
 -- 6
 sum :: Num a => [a] -> a
