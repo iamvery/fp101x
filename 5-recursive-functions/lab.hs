@@ -5,7 +5,7 @@ assert p str = unless p (error str)
 
 
 toDigits :: Integer -> [Integer]
-toDigits 0 = []
+toDigits 0 = [] -- or [0] per the exercise
 toDigits n = toDigits (n `div` 10) ++ [n `mod` 10]
 
 eval xs = foldl (\x y -> y + (10 * x)) 0 xs
@@ -156,6 +156,7 @@ creditcards = [ 4716347184862961,
 -- check
 main = do
   assert (eval (toDigits 123) == 123) "toDigits is wrong"
+  assert (eval (toDigits 0) == 0) "toDigits is wrong"
   assert (all (\d -> d >= 0 && d < 10) (toDigits 123)) "toDigits is wrong"
   assert (evalRev (toDigitsRev 123) == 123) "toDigitsRev is wrong"
   assert (all (\d -> d >= 0 && d < 10) (toDigitsRev 123)) "toDigitsRev is wrong"
